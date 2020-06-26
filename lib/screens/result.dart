@@ -25,7 +25,7 @@ class _ResultState extends State<Result> {
   @override
   initState() {
     result="";
-    flaskEndPoint = 'http://4f7daecf.ngrok.io/'+widget.action;
+    flaskEndPoint = 'http://506ca55a5cfe.ngrok.io/'+widget.action;
     super.initState();
   }
 
@@ -137,7 +137,7 @@ class _ResultState extends State<Result> {
                             child:Flex(
                               direction: Axis.horizontal,
                               children: <Widget>[
-                                Flexible(child: ConditionalText(widget.action, result))
+                                Flexible(child: Text(result))
                               ],
                             ),
                           ),
@@ -181,22 +181,23 @@ class ConditionalText extends StatelessWidget {
     String result;
     if(action == "resume"){
       final resumeData = json.decode(text);
-      result += "Candidate Name: ${resumeData['candidate_name'][0]}\n\n";
+      print(resumeData['data']['resume_data']);
+      result += "Candidate Name: ${resumeData['data']['resume_data']['candidate_name'][0]}\n\n";
       result += "Databases: \n";
-      for(int i=0; i<resumeData['databases']; i++){
+      for(int i=0; i<resumeData['data']['resume_data']['databases']; i++){
         result += resumeData['databases'][i] + ", ";
       }
-      result += "\n\nEmail: ${resumeData['email'][0]}\n\n";
+      result += "\n\nEmail: ${resumeData['data']['resume_data']['email'][0]}\n\n";
       result += "Hobbies: \n";
-      for(int i=0; i<resumeData['hobbies']; i++){
-        result += resumeData['hobbies'][i] + ", ";
+      for(int i=0; i<resumeData['data']['resume_data']['hobbies']; i++){
+        result += resumeData['data']['resume_data']['hobbies'][i] + ", ";
       }
-      result += "\n\nPhone Number: ${resumeData['phone'][0]}\n\n";
+      result += "\n\nPhone Number: ${resumeData['data']['resume_data']['phone'][0]}\n\n";
       result += "Programming Languages: \n";
-      for(int i=0; i<resumeData['programming languages']; i++){
-        result += resumeData['programming languages'][i] + ", ";
+      for(int i=0; i<resumeData['data']['resume_data']['programming languages']; i++){
+        result += resumeData['data']['resume_data']['programming languages'][i] + ", ";
       }
-      result += "\n\nUniversity: ${resumeData['universities'][0]}\n\n";
+      result += "\n\nUniversity: ${resumeData['data']['resume_data']['universities'][0]}\n\n";
     }else{
       result = text;
     }

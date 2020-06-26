@@ -126,7 +126,7 @@ class _VoiceHomeState extends State<VoiceHome> {
   int flag = 0;
   getForm() async {
     for (int i = 0; i < properties.length; i++) {
-      if (properties[i] == 'email') {
+      if (properties[i].toLowerCase() == 'email') {
         details[properties[i]] = User.email;
         flag = 1;
       } else
@@ -136,7 +136,7 @@ class _VoiceHomeState extends State<VoiceHome> {
       details['email'] = User.email;
     }
     print(details);
-    final String url = "http://2ec43766.ngrok.io/getformdetails";
+    final String url = "http://506ca55a5cfe.ngrok.io/getformdetails";
     final response = await http.post(
       url,
       headers: {
